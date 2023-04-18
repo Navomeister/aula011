@@ -1,4 +1,3 @@
-
 import 'dart:math';
 import 'package:aula011/frase.dart';
 import 'package:flutter/material.dart';
@@ -69,14 +68,13 @@ class _FrasesState extends State<Frases> {
     atual = aleatorio;
     while (atual == aleatorio) {
       setState(() {
-        aleatorio = Random().nextInt(10);
+        aleatorio = Random().nextInt(lista.length);
       });
     }
   }
 
   @override
   Widget build(BuildContext context) {
-    
     // front end do aplicativo
     return Scaffold(
       appBar: AppBar(
@@ -86,13 +84,15 @@ class _FrasesState extends State<Frases> {
             image: NetworkImage(
                 "https://modworkshop.net/mydownloads/previews/85614_1663385681_b5d551de7d6707c3345902b9065f0219.webp"),
             fit: BoxFit.cover),
-          // tira a cor de fundo 
+        // tira a cor de fundo
         backgroundColor: Colors.transparent,
       ),
 
       // corpo central do app
+      // Stack para poder colocar elementos um em cima do outro
       body: Stack(
         children: <Widget>[
+          // Container contendo a imagem de fundo
           Container(
             decoration: BoxDecoration(
               image: DecorationImage(
@@ -102,9 +102,12 @@ class _FrasesState extends State<Frases> {
               ),
             ),
           ),
+
+          // Coluna centralizada(?) com os elementos em cima da imagem de fundo
           Column(
             crossAxisAlignment: CrossAxisAlignment.center,
             children: <Widget>[
+              // Título do corpo centralizado
               Center(
                 child: Padding(
                   padding: EdgeInsets.only(top: 20),
@@ -114,6 +117,8 @@ class _FrasesState extends State<Frases> {
                   ),
                 ),
               ),
+
+              // Imagem da Frase centralizada
               Center(
                 child: Padding(
                   padding: EdgeInsets.only(top: 30),
@@ -125,6 +130,8 @@ class _FrasesState extends State<Frases> {
                   ),
                 ),
               ),
+
+              // Frase centralizada, com tamanho fixo para evitar que o botão se desloque
               Center(
                 child: Padding(
                     padding: EdgeInsets.only(top: 30),
@@ -137,6 +144,8 @@ class _FrasesState extends State<Frases> {
                       ),
                     )),
               ),
+
+              // Botão com padding para dar espaço da Frase
               Padding(
                   padding: EdgeInsets.only(top: 20),
                   child: SizedBox(
